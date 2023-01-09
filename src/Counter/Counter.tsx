@@ -16,7 +16,7 @@ const Counter = () => {
       <div className="flex flex-col w-full items-center">
         <h1>Counter Example</h1>
         <p className="text-cyan-300 mb-30px">
-          Basic Redux example with dispatching actions and React Hooks
+          Redux with state from store, dispatching actions and React Hooks
         </p>
         <div className="border-1 border-white w-450px flex flex-col items-center p-20px m-auto">
           <h3 className="">Count from Redux store</h3>

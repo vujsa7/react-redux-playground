@@ -1,17 +1,16 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { bindActionCreators } from "redux";
-import { addItem } from "../../actions";
 
-const AddItem = () => {
+const AddItem = ({
+  onSubmit,
+}: {
+  onSubmit: (name: string, price: number) => void;
+}) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
-  const dispatch = useDispatch();
-  const actions = bindActionCreators({ addItem }, dispatch);
 
   return (
     <div className="border-1 border-white w-2/5 flex flex-col items-center p-20px">
-      <h3>Add To Menu</h3>
+      <h3>Add Menu Item</h3>
       <div className="w-full flex flex-col gap-10px items-end">
         <label className="w-full mb-10px">
           Item Name
@@ -39,7 +38,7 @@ const AddItem = () => {
         <button
           className="w-full rounded bg-pink-600 px-16px py-10px"
           onClick={() => {
-            actions.addItem(name, price);
+            onSubmit(name, price);
           }}
         >
           Add
