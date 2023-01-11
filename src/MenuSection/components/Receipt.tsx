@@ -46,13 +46,13 @@ const Receipt = ({
             setTip(newTip);
             updateTipPercentage && updateTipPercentage(newTip);
           }}
+          defaultValue={tip}
         >
           {tipOptions.map((option, index) => (
             <option
               key={index}
               className="bg-dark-500"
               value={option.value}
-              selected={option.value === tip}
             >
               {option.label}
             </option>

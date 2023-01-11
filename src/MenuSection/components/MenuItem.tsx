@@ -22,6 +22,7 @@ const MenuItem = ({
 }: MenuItemProperties) => {
   const [price, setPrice] = useState(item.price);
   const [quantity, setQuantity] = useState(item.quantity);
+  console.log('rerender')
 
   return (
     <div className="border-1 border-white w-full flex flex-col p-20px bg-cyan-800 bg-opacity-20">
