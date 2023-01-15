@@ -1,3 +1,4 @@
+import produce from "immer";
 import {
   DECREMENT,
   INCREMENT,
@@ -36,10 +37,10 @@ export const counterReducer = (count = initialState.count, action: any) => {
   return count;
 };
 
-export const menuReducer = (menu = initialState.menu, action: any) => {
+export const menuReducer = produce((menu = initialState.menu, action: any) => {
   if (action.type === ITEM_ADDED) {
     const item = { id: id++, quantity: 1, ...action.payload };
-    return [...menu, item];
+    menu.push(item);
   }
 
   if (action.type === ITEM_REMOVED) {
@@ -47,25 +48,15 @@ export const menuReducer = (menu = initialState.menu, action: any) => {
   }
 
   if (action.type === ITEM_PRICE_UPDATE) {
-    return menu.map((item) => {
-      if (item.id === action.payload.id) {
-        return { ...item, price: action.payload.price };
-      }
-      return item;
-    });
+    const item = menu.find((item) => item.id === action.payload.id);
+    if (item) item.price = parseInt(action.payload.price, 10);
   }
 
   if (action.type === ITEM_QUANTITY_UPDATE) {
-    return menu.map((item) => {
-      if (item.id === action.payload.id) {
-        return { ...item, quantity: action.payload.quantity };
-      }
-      return item;
-    });
+    const item = menu.find((item) => item.id === action.payload.id);
+    if (item) item.quantity = parseInt(action.payload.quantity, 10);
   }
-
-  return menu;
-};
+}, initialState.menu);
 
 export const tipPercentageReducer = (
   tipPercentage = initialState.tipPercentage,
